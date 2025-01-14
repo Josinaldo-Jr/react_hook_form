@@ -29,3 +29,13 @@ input[type="data"] {
   margin-bottom: 20px;
   background-color: rgb(51, 51, 51);
 }
+
+.form {
+  margin-bottom: 20px;
+}
+
+.error {
+  color: red;
+  font-size: 12px;
+  text-align: left;
+}
