@@ -44,9 +44,9 @@ export const YouTubeForm = () => {
     defaultValues: {
         username: "Batman",
         email: "",
-        channel: "RHF Channel",
+        channel: "",
         social: {
-          twitter: "@RHFTeste",
+          twitter: "RHFTeste",
           facebook: "RHFTeste",
         },
         phoneNumbers:["", ""],
@@ -56,7 +56,7 @@ export const YouTubeForm = () => {
     },
   });
 
-  const { register, control, handleSubmit, formState, /*watch,*/ getValues, setValue } = form;
+  const { register, control, handleSubmit, formState, watch, getValues, setValue } = form;
   const { errors, touchedFields, dirtyFields, isDirty } = formState;
 
   console.log({touchedFields, dirtyFields, isDirty});
@@ -153,7 +153,7 @@ export const YouTubeForm = () => {
           <input
             type="text"
             id="twitter"
-            {...register("social.twitter")}/>
+            {...register("social.twitter", {disabled: watch("channel") === "", required: "Enter twitter profile"})}/>
         </div>
 
         <div className="form-control">
