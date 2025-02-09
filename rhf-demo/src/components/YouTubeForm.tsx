@@ -40,7 +40,7 @@ export const YouTubeForm = () => {
   //   }
   // });
 
-  const form = useForm<FormValues>({
+const form = useForm<FormValues>({
     defaultValues: {
         username: "Batman",
         email: "",
@@ -54,6 +54,7 @@ export const YouTubeForm = () => {
         age: 0,
         dob: new Date()
     },
+    mode: "all",
   });
 
   const { register, control, handleSubmit, formState, watch, getValues, setValue, reset } = form;
