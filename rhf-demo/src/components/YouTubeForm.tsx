@@ -1,4 +1,4 @@
-// import { useEffect } from "react";
+import { useEffect } from "react";
 import { useForm, useFieldArray, FieldErrors } from "react-hook-form";
 import { DevTool } from "@hookform/devtools";
 
@@ -56,7 +56,7 @@ export const YouTubeForm = () => {
     },
   });
 
-  const { register, control, handleSubmit, formState, watch, getValues, setValue } = form;
+  const { register, control, handleSubmit, formState, watch, getValues, setValue, reset } = form;
   const { errors, /*touchedFields, dirtyFields,*/ isDirty, isValid, isSubmitting, isSubmitted, isSubmitSuccessful, submitCount } = formState;
 
   console.log({isSubmitting, isSubmitted, isSubmitSuccessful, submitCount})
@@ -79,6 +79,12 @@ export const YouTubeForm = () => {
   const handleGetValues = () => {
     console.log("Get values", getValues(["username", "channel"]));
   }
+
+  useEffect (() => {
+    if (isSubmitSuccessful){
+      reset();
+    }
+  }, [isSubmitSuccessful, reset]);
 
   const handleSetValue = () => {
     setValue("username", "", {
@@ -238,8 +244,10 @@ export const YouTubeForm = () => {
         </div>
 
         <button disabled={!isDirty || !isValid || isSubmitting}>Submit</button>
+        <button type="button" onClick={() => reset ()}>Reset values</button>
         <button type="button" onClick={handleGetValues}>Get values</button>
         <button type="button" onClick={handleSetValue}>Set value</button>
+       
 
       </form>
       <DevTool control={control} />
