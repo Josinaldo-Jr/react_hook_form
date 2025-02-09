@@ -54,10 +54,10 @@ const form = useForm<FormValues>({
         age: 0,
         dob: new Date()
     },
-    mode: "all",
+    mode: "onSubmit",
   });
 
-  const { register, control, handleSubmit, formState, watch, getValues, setValue, reset } = form;
+  const { register, control, handleSubmit, formState, watch, getValues, setValue, reset, trigger } = form;
   const { errors, /*touchedFields, dirtyFields,*/ isDirty, /*isValid,*/ isSubmitting, isSubmitted, isSubmitSuccessful, submitCount } = formState;
 
   console.log({isSubmitting, isSubmitted, isSubmitSuccessful, submitCount})
@@ -253,6 +253,7 @@ const form = useForm<FormValues>({
         <button type="button" onClick={() => reset ()}>Reset values</button>
         <button type="button" onClick={handleGetValues}>Get values</button>
         <button type="button" onClick={handleSetValue}>Set value</button>
+        <button type="button" onClick={() => trigger ("channel")}>Validate</button>
        
 
       </form>
